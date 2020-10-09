@@ -11,12 +11,12 @@ RSpec.describe LittleneckClamAV::Clam do
     end
 
     describe 'scan' do
-      it 'should call Cocaine' do
+      it 'should call Terrapin' do
         file = __FILE__
 
         allow(subject).to receive(:available?).and_return(true)
 
-        mock_cocaine cmd: subject.command,
+        mock_terrapin cmd: subject.command,
                      opts: %(--no-summary "#{file}"),
                      params: {
                        swallow_stderr: true,

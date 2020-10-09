@@ -8,11 +8,11 @@ def result_factory(override = {})
   LittleneckClamAV::Result.new options
 end
 
-def mock_cocaine(cocaine_options = {})
-  MockCocaine.new(cocaine_options).mock
+def mock_terrapin(terrapin_options = {})
+  MockTerrapin.new(terrapin_options).mock
 end
 
-class MockCocaine
+class MockTerrapin
   include RSpec::Mocks::ExampleMethods
 
   def initialize(options)
@@ -33,17 +33,17 @@ class MockCocaine
   end
 
   def build_mock
-    basic_mock = expect(Cocaine::CommandLine).to(receive(:new))
-    basic_mock.with(*cocaine_arguments) if any_argument_options?
-    basic_mock.and_return(cocaine_command_double)
+    basic_mock = expect(Terrapin::CommandLine).to(receive(:new))
+    basic_mock.with(*terrapin_arguments) if any_argument_options?
+    basic_mock.and_return(terrapin_command_double)
     basic_mock.and_raise(options[:raise]) if options.key?(:raise)
   end
 
-  def cocaine_command_double
-    double('cocaine command', run: options[:output])
+  def terrapin_command_double
+    double('terrapin command', run: options[:output])
   end
 
-  def cocaine_arguments
+  def terrapin_arguments
     [options[:cmd], options[:opts], options[:params]]
   end
 

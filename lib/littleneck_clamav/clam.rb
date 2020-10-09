@@ -1,4 +1,4 @@
-require 'cocaine'
+require 'terrapin'
 require 'English'
 require 'time'
 
@@ -27,7 +27,7 @@ class LittleneckClamAV
       check_scan! path
       opts = { swallow_stderr: true, expected_outcodes: [0, 1] }
       params = ['--no-summary', %("#{path}")].join(' ')
-      output = Cocaine::CommandLine.new(command, params, opts).run
+      output = Terrapin::CommandLine.new(command, params, opts).run
       parse_result path, output, $CHILD_STATUS.exitstatus
     end
 
@@ -41,9 +41,9 @@ class LittleneckClamAV
       @version ||= begin
         opts = { swallow_stderr: true }
         params = '--version'
-        output = Cocaine::CommandLine.new(command, params, opts).run.strip
+        output = Terrapin::CommandLine.new(command, params, opts).run.strip
         parse_output(output)
-      rescue Cocaine::ExitStatusError, Cocaine::CommandNotFoundError => e
+      rescue Terrapin::ExitStatusError, Terrapin::CommandNotFoundError => e
         { error: e.message, success: false }
       end
     end

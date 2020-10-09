@@ -12,7 +12,7 @@ class LittleneckClamAV
       check_scan! path
       opts = { swallow_stderr: true, expected_outcodes: [0, 1] }
       params = %(--no-summary -<"#{path}")
-      output = Cocaine::CommandLine.new(command, params, opts).run
+      output = Terrapin::CommandLine.new(command, params, opts).run
       parse_result path, output, $CHILD_STATUS.exitstatus
     end
   end
