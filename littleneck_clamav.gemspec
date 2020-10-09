@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = '>= 1.3.6'
 
-  s.add_dependency 'cocaine'
+  s.add_dependency 'terrapin'
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 3.1'
